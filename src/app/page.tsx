@@ -7,6 +7,7 @@ import NuestroTrabajo from "@/components/NuestroTrabajo";
 import Resenas from "@/components/Resenas";
 import Contacto from "@/components/Contacto";
 import Footer from "@/components/Footer";
+import PromoDescuento from "@/components/PromoDescuento";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
         <Contacto />
       </main>
       <Footer />
+      <PromoDescuento />
     </>
   );
 }
