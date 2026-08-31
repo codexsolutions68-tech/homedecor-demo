@@ -7,7 +7,6 @@ import { waLink } from "@/lib/site";
 const DEADLINE_KEY = "homedecor_promo_deadline";
 const DISMISS_KEY = "homedecor_promo_dismissed";
 const CYCLE_HOURS = 48;
-const SHOW_DELAY_MS = 2500;
 
 function getDeadline(): number {
   const stored = Number(window.localStorage.getItem(DEADLINE_KEY));
@@ -31,24 +30,42 @@ export default function PromoDescuento() {
   const [deadline, setDeadline] = useState<number | null>(null);
   const [now, setNow] = useState<number | null>(null);
   const [open, setOpen] = useState(false);
+  const [drawIn, setDrawIn] = useState(false);
 
   useEffect(() => {
     if (window.sessionStorage.getItem(DISMISS_KEY)) return;
-    const timer = setTimeout(() => {
-      setDeadline(getDeadline());
-      setNow(Date.now());
-      setOpen(true);
-    }, SHOW_DELAY_MS);
-    return () => clearTimeout(timer);
+    const target = document.getElementById("productos");
+    if (!target) return;
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setDeadline(getDeadline());
+            setNow(Date.now());
+            setOpen(true);
+            io.disconnect();
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+    io.observe(target);
+    return () => io.disconnect();
   }, []);
 
   useEffect(() => {
-    if (!open) return;
+    if (!open) {
+      setDrawIn(false);
+      return;
+    }
     document.body.style.overflow = "hidden";
     const id = setInterval(() => setNow(Date.now()), 1000);
+    const drawTimer = setTimeout(() => setDrawIn(true), 50);
     return () => {
       document.body.style.overflow = "";
       clearInterval(id);
+      clearTimeout(drawTimer);
     };
   }, [open]);
 
@@ -95,8 +112,21 @@ export default function PromoDescuento() {
         </div>
 
         <div className="relative py-14 px-8 text-center overflow-hidden">
-          <div className="absolute -left-8 top-8 w-32 h-14 bg-[#111] rounded-full -rotate-45" />
-          <div className="absolute -right-8 bottom-8 w-32 h-14 bg-[#111] rounded-full -rotate-45" />
+          <div
+            className="absolute -left-8 top-8 w-32 h-14 bg-[#111] rounded-full transition-transform duration-700 ease-out"
+            style={{
+              transformOrigin: "left center",
+              transform: `rotate(-45deg) scaleX(${drawIn ? 1 : 0})`,
+            }}
+          />
+          <div
+            className="absolute -right-8 bottom-8 w-32 h-14 bg-[#111] rounded-full transition-transform duration-700 ease-out"
+            style={{
+              transformOrigin: "right center",
+              transform: `rotate(-45deg) scaleX(${drawIn ? 1 : 0})`,
+              transitionDelay: "150ms",
+            }}
+          />
 
           <h3 className="relative font-extrabold text-3xl sm:text-4xl text-[#111] leading-tight mb-8">
             20% Dscto.
