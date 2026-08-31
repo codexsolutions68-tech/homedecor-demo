@@ -1,71 +1,51 @@
 "use client";
 
-import { useRef } from "react";
-import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 import { useSectionProgress } from "@/lib/useSectionProgress";
 import { ramp, fadeInOut } from "@/lib/utils";
 import { waLink } from "@/lib/site";
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const progress = useSectionProgress(sectionRef);
+  // Duración real del clip (~10.005s); se ajusta sola si el navegador
+  // reporta un valor distinto una vez cargados los metadatos.
+  const [duration, setDuration] = useState(10.005);
 
-  // Acto 1 (grande): el ambiente cálido de una sala real con roller.
-  // Acto 2 (pequeño): el detalle de la tela, de cerca.
-  // La transición nunca es un corte directo: pasa por un breve blackout
-  // con el naranja de marca, como luces de escenario apagándose.
-  const act1Opacity = 1 - ramp(progress, 0.3, 0.4);
-  const act2Opacity = ramp(progress, 0.36, 0.46);
-  const blackout = Math.min(ramp(progress, 0.3, 0.38), 1 - ramp(progress, 0.42, 0.5));
+  // El video es una sola toma continua (casa -> ventana -> cortina),
+  // así que el scroll simplemente "restaura" el tiempo del video en vez
+  // de cruzar dos fotos como antes.
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    video.currentTime = progress * duration;
+  }, [progress, duration]);
 
-  const driftY = -progress * 40;
+  const teaser1 = fadeInOut(progress, 0.03, 0.1, 0.22, 0.3);
+  const teaser2 = fadeInOut(progress, 0.42, 0.5, 0.6, 0.68);
 
-  const teaser1 = fadeInOut(progress, 0.04, 0.13, 0.25, 0.33);
-  const teaser2 = fadeInOut(progress, 0.4, 0.48, 0.58, 0.66);
+  const arrival = ramp(progress, 0.74, 0.93);
+  const darken = ramp(progress, 0.6, 0.93) * 0.4;
 
-  const arrival = ramp(progress, 0.6, 0.82);
-  const darken = ramp(progress, 0.5, 0.85) * 0.35;
-
-  const scrollHintOpacity = 1 - ramp(progress, 0.02, 0.12);
+  const scrollHintOpacity = 1 - ramp(progress, 0.02, 0.1);
 
   return (
-    <section id="home-hero" ref={sectionRef} style={{ height: "300vh" }} className="relative">
+    <section id="home-hero" ref={sectionRef} style={{ height: "320vh" }} className="relative">
       <div className="sticky top-0 h-[100svh] min-h-[640px] w-full overflow-hidden bg-ink pt-20">
-        <div
-          className="absolute inset-0"
-          style={{ transform: `translate3d(0, ${driftY}px, 0)` }}
-        >
-          <Image
-            src="/images/stock-hero-plants.jpeg"
-            alt="Cortina roller con luz cálida de atardecer en una sala de Lima"
-            fill
-            priority
-            sizes="100vw"
-            className="hero-grade animate-kenburns object-cover object-[65%_50%]"
-            style={{ opacity: act1Opacity }}
-          />
-          <Image
-            src="/images/stock-duo.jpeg"
-            alt="Detalle de cortina roller duo con textura y luz filtrada"
-            fill
-            sizes="100vw"
-            className="hero-grade animate-kenburns-slow object-cover"
-            style={{ opacity: act2Opacity }}
-          />
-        </div>
-
-        {/* Puente de blackout: tapa el corte entre las dos escenas. */}
-        <div
-          className="pointer-events-none absolute inset-0"
-          style={{
-            opacity: blackout,
-            background:
-              "radial-gradient(circle at 50% 55%, rgba(242,102,12,0.35), rgba(28,24,21,1) 72%)",
-          }}
+        <video
+          ref={videoRef}
+          src="/video/hero.mp4"
+          poster="/video/hero-poster.jpg"
+          muted
+          playsInline
+          preload="auto"
+          onLoadedMetadata={(e) => setDuration(e.currentTarget.duration)}
+          className="absolute inset-0 h-full w-full object-cover"
         />
 
-        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-ink/20" />
-        <div className="absolute inset-0 bg-gradient-to-r from-ink/80 via-ink/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/45 to-ink/15" />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink/75 via-ink/15 to-transparent" />
         <div
           className="pointer-events-none absolute inset-0 bg-ink"
           style={{ opacity: darken }}
