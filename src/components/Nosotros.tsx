@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Reveal from "./Reveal";
-import CurtainReveal from "./CurtainReveal";
 import Counter from "./Counter";
 
 const bullets = [
@@ -61,7 +60,7 @@ export default function Nosotros() {
         </Reveal>
 
         <Reveal delay={150}>
-          <CurtainReveal className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl shadow-ink/10">
+          <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl shadow-ink/10">
             <Image
               src="/images/about-roller.webp"
               alt="Instalación real de cortina roller Home Decor sobre sofá gris"
@@ -69,7 +68,7 @@ export default function Nosotros() {
               sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover"
             />
-          </CurtainReveal>
+          </div>
         </Reveal>
       </div>
     </section>

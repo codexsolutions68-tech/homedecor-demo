@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Reveal from "./Reveal";
-import CurtainReveal from "./CurtainReveal";
 
 const pasos = [
   {
@@ -47,7 +46,7 @@ export default function NuestroTrabajo() {
                     {p.titulo}
                   </h3>
                 </div>
-                <CurtainReveal className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-5">
+                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-5">
                   <Image
                     src={p.img}
                     alt={p.titulo}
@@ -55,7 +54,7 @@ export default function NuestroTrabajo() {
                     sizes="(max-width: 768px) 100vw, 33vw"
                     className="object-cover"
                   />
-                </CurtainReveal>
+                </div>
                 <p className="text-stone leading-relaxed">{p.desc}</p>
               </div>
             </Reveal>

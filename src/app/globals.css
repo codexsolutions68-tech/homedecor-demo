@@ -132,15 +132,6 @@ body {
   pointer-events: none;
 }
 
-/* ---------- curtain-wipe image reveal (echoes the product itself) ---------- */
-.curtain-wipe {
-  clip-path: inset(0 0 0 100%);
-  transition: clip-path 1.1s cubic-bezier(0.65, 0, 0.35, 1);
-}
-.curtain-wipe.in-view {
-  clip-path: inset(0 0 0 0%);
-}
-
 @keyframes hd-line-grow {
   from {
     transform: scaleY(0);
