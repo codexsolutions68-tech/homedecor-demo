@@ -56,6 +56,17 @@ body {
   animation: kenburns 26s ease-in-out infinite alternate;
   will-change: transform;
 }
+.animate-kenburns-slow {
+  animation: kenburns 34s ease-in-out infinite alternate;
+  animation-delay: -8s;
+  will-change: transform;
+}
+
+/* Unifies the two hero photos (different sources/light) into one warm,
+   filmic grade so the cut between them never looks like a stock collage. */
+.hero-grade {
+  filter: saturate(1.12) contrast(1.06) sepia(0.12) hue-rotate(-4deg) brightness(0.97);
+}
 
 @keyframes hd-float {
   0%,
