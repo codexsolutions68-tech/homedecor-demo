@@ -1,0 +1,123 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #1c1815;
+  --ink-soft: #2a241f;
+  --paper: #faf7f2;
+  --paper-dim: #f0ebe2;
+  --orange: #f2660c;
+  --orange-deep: #c94f06;
+  --orange-glow: #ff8a3d;
+  --stone: #8a8178;
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-paper: var(--paper);
+  --color-paper-dim: var(--paper-dim);
+  --color-orange: var(--orange);
+  --color-orange-deep: var(--orange-deep);
+  --color-orange-glow: var(--orange-glow);
+  --color-stone: var(--stone);
+  --font-sans: var(--font-inter);
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+}
+
+/* ---------- scroll reveal ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  filter: blur(4px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: none;
+  filter: blur(0);
+}
+
+@keyframes kenburns {
+  0% {
+    transform: scale(1.02) translate3d(0, 0, 0);
+  }
+  100% {
+    transform: scale(1.14) translate3d(-1.5%, -1%, 0);
+  }
+}
+.animate-kenburns {
+  animation: kenburns 26s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes hd-float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+.animate-float {
+  animation: hd-float 4s ease-in-out infinite;
+}
+
+@keyframes hd-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+.animate-pulse-soft {
+  animation: hd-pulse 2s ease-in-out infinite;
+}
+
+@keyframes hd-shine {
+  0% {
+    transform: translateX(-130%) skewX(-14deg);
+  }
+  55%,
+  100% {
+    transform: translateX(320%) skewX(-14deg);
+  }
+}
+.shine {
+  position: relative;
+  overflow: hidden;
+}
+.shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.35),
+    transparent
+  );
+  transform: translateX(-130%) skewX(-14deg);
+  animation: hd-shine 3.4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--paper);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--orange-deep);
+  border-radius: 8px;
+}
