@@ -65,6 +65,18 @@ export default function Contacto() {
             </div>
           </Reveal>
         </div>
+
+        <Reveal delay={300}>
+          <div className="mt-6 rounded-2xl overflow-hidden border border-white/10 h-72 md:h-96">
+            <iframe
+              title="Ubicación de Home Decor"
+              src={`https://www.google.com/maps?q=${encodeURIComponent(site.address)}&output=embed`}
+              className="w-full h-full grayscale-[0.3] contrast-[1.1] invert-0"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
+        </Reveal>
       </div>
     </section>
   );

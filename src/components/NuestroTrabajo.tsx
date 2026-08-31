@@ -5,17 +5,17 @@ const pasos = [
   {
     img: "/images/project-1.webp",
     titulo: "Visita técnica y medición",
-    desc: "Vamos a tu casa u oficina, medimos cada ventana y te asesoramos sobre el sistema ideal.",
+    desc: "Medimos tus ventanas y te asesoramos in situ.",
   },
   {
     img: "/images/project-2.webp",
     titulo: "Fabricación e instalación",
-    desc: "Fabricamos a medida con insumos importados y coordinamos la instalación por nuestro equipo técnico.",
+    desc: "Fabricamos a medida e instalamos con equipo propio.",
   },
   {
     img: "/images/project-3.webp",
     titulo: "Mantenimiento y garantía",
-    desc: "Acompañamiento post-venta: ajustes, limpieza y garantía sobre el sistema instalado.",
+    desc: "Ajustes, limpieza y garantía post-instalación.",
   },
 ];
 

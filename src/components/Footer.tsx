@@ -1,9 +1,10 @@
 import Image from "next/image";
+import Link from "next/link";
 import { site } from "@/lib/site";
 
 const links = [
-  { href: "#nosotros", label: "Nosotros" },
   { href: "#productos", label: "Productos" },
+  { href: "#nosotros", label: "Nosotros" },
   { href: "#trabajo", label: "Nuestro Trabajo" },
   { href: "#contacto", label: "Contacto" },
 ];
@@ -63,6 +64,10 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-5 md:px-8 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
         <p className="text-white/40 text-sm text-center">
           © {new Date().getFullYear()} {site.name}. Todos los derechos reservados.
+          {" · "}
+          <Link href="/admin" className="hover:text-orange transition-colors">
+            Panel admin
+          </Link>
         </p>
 
         <div className="flex items-center gap-4">

@@ -7,8 +7,8 @@ import { Menu, X } from "lucide-react";
 import { site, waLink } from "@/lib/site";
 
 const links = [
-  { href: "#nosotros", label: "Nosotros" },
   { href: "#productos", label: "Productos" },
+  { href: "#nosotros", label: "Nosotros" },
   { href: "#trabajo", label: "Nuestro Trabajo" },
   { href: "#contacto", label: "Contacto" },
 ];

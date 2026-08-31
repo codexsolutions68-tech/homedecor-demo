@@ -4,6 +4,7 @@ import Nosotros from "@/components/Nosotros";
 import Features from "@/components/Features";
 import Productos from "@/components/Productos";
 import NuestroTrabajo from "@/components/NuestroTrabajo";
+import Resenas from "@/components/Resenas";
 import Contacto from "@/components/Contacto";
 import Footer from "@/components/Footer";
 
@@ -13,10 +14,11 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <Nosotros />
         <Features />
         <Productos />
+        <Nosotros />
         <NuestroTrabajo />
+        <Resenas />
         <Contacto />
       </main>
       <Footer />
