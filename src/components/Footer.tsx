@@ -1,20 +1,68 @@
 import Image from "next/image";
 import { site } from "@/lib/site";
 
+const links = [
+  { href: "#nosotros", label: "Nosotros" },
+  { href: "#productos", label: "Productos" },
+  { href: "#trabajo", label: "Nuestro Trabajo" },
+  { href: "#contacto", label: "Contacto" },
+];
+
 export default function Footer() {
   return (
-    <footer className="bg-ink border-t border-white/10 py-12">
-      <div className="mx-auto max-w-7xl px-5 md:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
-        <Image
-          src="/images/logo.webp"
-          alt="Home Decor"
-          width={140}
-          height={45}
-          className="h-9 w-auto brightness-0 invert opacity-90"
-        />
+    <footer className="bg-ink border-t border-white/10 pt-16 pb-8">
+      <div className="mx-auto max-w-7xl px-5 md:px-8 grid sm:grid-cols-3 gap-10 pb-12 border-b border-white/10">
+        <div>
+          <Image
+            src="/images/logo.webp"
+            alt="Home Decor"
+            width={140}
+            height={45}
+            className="h-9 w-auto brightness-0 invert opacity-90 mb-4"
+          />
+          <p className="text-white/50 text-sm leading-relaxed max-w-xs">
+            Fabricantes de cortinas roller y persianas en Lima. {site.tagline}.
+          </p>
+        </div>
 
+        <div>
+          <p className="text-white/40 text-xs font-bold uppercase tracking-widest mb-4">
+            Navegación
+          </p>
+          <ul className="flex flex-col gap-2.5">
+            {links.map((l) => (
+              <li key={l.href}>
+                <a href={l.href} className="text-white/70 hover:text-orange text-sm transition-colors">
+                  {l.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <p className="text-white/40 text-xs font-bold uppercase tracking-widest mb-4">
+            Contacto
+          </p>
+          <ul className="flex flex-col gap-2.5 text-sm">
+            <li>
+              <a href={`tel:+${site.phoneWhatsApp}`} className="text-white/70 hover:text-orange transition-colors">
+                {site.phoneDisplay}
+              </a>
+            </li>
+            <li>
+              <a href={`mailto:${site.email}`} className="text-white/70 hover:text-orange transition-colors break-all">
+                {site.email}
+              </a>
+            </li>
+            <li className="text-white/70">{site.address}</li>
+          </ul>
+        </div>
+      </div>
+
+      <div className="mx-auto max-w-7xl px-5 md:px-8 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
         <p className="text-white/40 text-sm text-center">
-          © {new Date().getFullYear()} {site.name}. {site.tagline}.
+          © {new Date().getFullYear()} {site.name}. Todos los derechos reservados.
         </p>
 
         <div className="flex items-center gap-4">

@@ -29,7 +29,7 @@ export default function Hero() {
   const scrollHintOpacity = 1 - ramp(progress, 0.02, 0.12);
 
   return (
-    <section ref={sectionRef} style={{ height: "300vh" }} className="relative">
+    <section id="home-hero" ref={sectionRef} style={{ height: "300vh" }} className="relative">
       <div className="sticky top-0 h-[100svh] min-h-[640px] w-full overflow-hidden bg-ink pt-20">
         <div
           className="absolute inset-0"
@@ -74,7 +74,7 @@ export default function Hero() {
         <div className="relative z-10 h-full mx-auto max-w-7xl px-5 md:px-8 flex flex-col justify-center">
           {/* Frases de tránsito: mismo lugar en pantalla, se funden una en otra. */}
           <p
-            className="absolute inset-x-0 top-1/2 -translate-y-1/2 max-w-xl text-white/90 text-2xl md:text-3xl font-semibold leading-snug"
+            className="absolute inset-x-0 top-1/2 -translate-y-1/2 max-w-xl font-display italic text-white/90 text-3xl md:text-4xl font-medium leading-snug"
             style={{
               opacity: teaser1,
               transform: `translateY(calc(-50% + ${(1 - teaser1) * 12}px))`,
@@ -83,7 +83,7 @@ export default function Hero() {
             Diez años dando forma a la luz de tu hogar.
           </p>
           <p
-            className="absolute inset-x-0 top-1/2 -translate-y-1/2 max-w-xl text-white/90 text-2xl md:text-3xl font-semibold leading-snug"
+            className="absolute inset-x-0 top-1/2 -translate-y-1/2 max-w-xl font-display italic text-white/90 text-3xl md:text-4xl font-medium leading-snug"
             style={{
               opacity: teaser2,
               transform: `translateY(calc(-50% + ${(1 - teaser2) * 12}px))`,
@@ -102,7 +102,7 @@ export default function Hero() {
             <p className="text-orange-glow font-bold tracking-[0.2em] text-xs md:text-sm uppercase mb-4">
               Fabricantes desde hace más de 10 años
             </p>
-            <h1 className="text-white font-extrabold text-4xl sm:text-5xl md:text-6xl leading-[1.05] max-w-3xl">
+            <h1 className="font-display text-white font-semibold text-4xl sm:text-5xl md:text-6xl leading-[1.08] max-w-3xl">
               Cortinas y persianas hechas para tu espacio
             </h1>
             <p className="text-white/85 text-lg md:text-xl mt-5 max-w-xl">

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Reveal from "./Reveal";
+import CurtainReveal from "./CurtainReveal";
 
 const pasos = [
   {
@@ -27,16 +28,26 @@ export default function NuestroTrabajo() {
           <p className="text-orange font-bold tracking-[0.2em] text-xs uppercase mb-4">
             Cómo trabajamos
           </p>
-          <h2 className="text-3xl md:text-5xl font-extrabold text-ink leading-tight">
+          <h2 className="font-display text-3xl md:text-5xl font-semibold text-ink leading-tight">
             De la medición a la instalación
           </h2>
         </Reveal>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="relative grid md:grid-cols-3 gap-10 md:gap-8">
+          <div className="hidden md:block absolute top-[38px] left-[16.6%] right-[16.6%] h-px bg-line" />
+
           {pasos.map((p, i) => (
             <Reveal key={p.titulo} delay={i * 120}>
-              <div className="h-full">
-                <div className="relative aspect-square rounded-2xl overflow-hidden mb-6">
+              <div className="h-full relative">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="relative z-10 w-9 h-9 rounded-full bg-orange text-white font-display font-semibold flex items-center justify-center text-sm shrink-0">
+                    {i + 1}
+                  </div>
+                  <h3 className="font-display text-lg font-semibold text-ink">
+                    {p.titulo}
+                  </h3>
+                </div>
+                <CurtainReveal className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-5">
                   <Image
                     src={p.img}
                     alt={p.titulo}
@@ -44,13 +55,7 @@ export default function NuestroTrabajo() {
                     sizes="(max-width: 768px) 100vw, 33vw"
                     className="object-cover"
                   />
-                  <div className="absolute top-4 left-4 w-9 h-9 rounded-full bg-orange text-white font-extrabold flex items-center justify-center text-sm">
-                    {i + 1}
-                  </div>
-                </div>
-                <h3 className="text-lg font-extrabold text-ink mb-2">
-                  {p.titulo}
-                </h3>
+                </CurtainReveal>
                 <p className="text-stone leading-relaxed">{p.desc}</p>
               </div>
             </Reveal>
