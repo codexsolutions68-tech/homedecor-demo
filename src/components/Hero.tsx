@@ -26,7 +26,7 @@ export default function Hero() {
   const teaser2 = fadeInOut(progress, 0.42, 0.5, 0.6, 0.68);
 
   const arrival = ramp(progress, 0.74, 0.93);
-  const darken = ramp(progress, 0.6, 0.93) * 0.4;
+  const darken = ramp(progress, 0.68, 0.93) * 0.22;
 
   const scrollHintOpacity = 1 - ramp(progress, 0.02, 0.1);
 
@@ -41,11 +41,11 @@ export default function Hero() {
           playsInline
           preload="auto"
           onLoadedMetadata={(e) => setDuration(e.currentTarget.duration)}
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover brightness-125 contrast-105 saturate-125"
         />
 
-        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/45 to-ink/15" />
-        <div className="absolute inset-0 bg-gradient-to-r from-ink/75 via-ink/15 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink/45 via-transparent to-transparent" />
         <div
           className="pointer-events-none absolute inset-0 bg-ink"
           style={{ opacity: darken }}
